@@ -1,21 +1,17 @@
 {
-  "id": "./",
-  "name": "Raio-X | Troca de Plantão",
+  "id": ".",
+  "name": "Troca de Plantão | Santa Casa de Angatuba",
   "short_name": "Troca de Plantão",
-  "description": "Registro de passagem de plantão da Radiologia da Santa Casa de Angatuba.",
+  "description": "Checklist de conferência e troca de plantão do equipamento de Raio-X.",
   "lang": "pt-BR",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#0B1118",
-  "theme_color": "#0B1118",
+  "background_color": "#0b1020",
+  "theme_color": "#0b1020",
   "icons": [
-    {
-      "src": "./icons/icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
   ]
 }
