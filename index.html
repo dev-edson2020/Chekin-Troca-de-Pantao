@@ -709,15 +709,25 @@ $("plantaoForm").addEventListener("submit",e=>{
  const data=$("data").value.split("-").reverse().join("/");
  const falha=checked("falha"),desc=$("descricaoFalha").value.trim(),obs=$("observacoes").value.trim();
  const msg=[
- "📋 *CHECKLIST RAIO-X — TROCA DE PLANTÃO*","",
- `📅 Data: ${data}`,`🕒 Horário: ${$("horario").value}`,
- `👤 Entrega: ${$("entrega").value}`,`👤 Recebe: ${$("recebe").value}`,"",
- `🔒 Lacre: ${checked("lacre")}`,`⚙️ Funcionamento: ${checked("funcionamento")}`,
- `⚠️ Houve falha durante o plantão? ${falha}`,
- ...(falha==="Sim"?[`Descrição: ${desc}`]:[]),
- `📝 Observações: ${obs||"Sem observações."}`,"",
- `☑️ Entrega confirmada por: ${$("entrega").value}`,
- `☑️ Recebimento confirmado por: ${$("recebe").value}`
+ "*CHECKLIST RAIO-X | TROCA DE PLANTÃO*",
+ "--------------------------------",
+ `*Data:* ${data}`,
+ `*Horário:* ${$("horario").value}`,
+ "",
+ "*RESPONSÁVEIS*",
+ `*Entrega:* ${$("entrega").value}`,
+ `*Recebimento:* ${$("recebe").value}`,
+ "",
+ "*CONDIÇÃO DO EQUIPAMENTO*",
+ `*Lacre:* ${checked("lacre")}`,
+ `*Funcionamento:* ${checked("funcionamento")}`,
+ `*Houve falha durante o plantão?* ${falha}`,
+ ...(falha==="Sim"?[`*Descrição da falha:* ${desc}`]:[]),
+ `*Observações:* ${obs||"Sem observações."}`,
+ "",
+ "*CONFIRMAÇÃO DOS PROFISSIONAIS*",
+ `*Entrega confirmada por:* ${$("entrega").value}`,
+ `*Recebimento confirmado por:* ${$("recebe").value}`
  ].join("\n");
  window.location.href="https://wa.me/?text="+encodeURIComponent(msg);
 });
