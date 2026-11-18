@@ -239,6 +239,137 @@ main{padding:0 16px 16px}
   box-shadow:var(--shadow)!important;
 }
 
+
+/* Identidade visual unificada: cabeçalho contínuo e superfícies suaves */
+html,body{
+  background:
+    radial-gradient(ellipse at 50% -12%,rgba(20,184,166,.10),transparent 42%),
+    linear-gradient(180deg,#0D1720 0%,#0B1118 48%,#0A1219 100%)!important;
+}
+.app{background:transparent!important}
+.appbar{
+  position:relative!important;
+  top:auto!important;
+  margin:16px 16px 0!important;
+  min-height:72px!important;
+  padding:14px 18px 12px!important;
+  gap:12px!important;
+  border:1px solid rgba(103,232,249,.12)!important;
+  border-bottom:0!important;
+  border-radius:22px 22px 0 0!important;
+  background:linear-gradient(115deg,#153341 0%,#12313A 52%,#103B3C 100%)!important;
+  box-shadow:0 10px 28px rgba(0,0,0,.12)!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+.brand-icon.radiology-logo{
+  width:44px!important;height:44px!important;flex:0 0 44px!important;
+  border-radius:14px!important;
+  box-shadow:0 4px 14px rgba(20,184,166,.15)!important;
+}
+.brand-icon.radiology-logo img{border-radius:10px!important}
+.brand-name{color:#F1F5F9!important;font-size:14px!important;font-weight:700!important}
+.brand-sub{color:#B5C9D3!important;font-size:11px!important;letter-spacing:.2px!important}
+main{padding:0 16px 18px!important}
+#form{margin:0!important}
+.form-hero{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  grid-template-rows:auto auto!important;
+  align-items:end!important;
+  column-gap:12px!important;row-gap:6px!important;
+  min-height:118px!important;
+  margin:0 16px 18px!important;
+  padding:17px 18px 18px!important;
+  border:1px solid rgba(103,232,249,.12)!important;
+  border-top:0!important;
+  border-radius:0 0 22px 22px!important;
+  background:linear-gradient(115deg,#153341 0%,#12313A 52%,#103B3C 100%)!important;
+  box-shadow:0 14px 30px rgba(0,0,0,.16)!important;
+}
+.form-hero:after{
+  width:136px!important;height:136px!important;
+  right:-68px!important;top:-72px!important;
+  border-color:rgba(103,232,249,.13)!important;
+  box-shadow:0 0 0 16px rgba(103,232,249,.025),0 0 0 34px rgba(103,232,249,.018)!important;
+}
+.form-title{
+  grid-column:1/-1!important;grid-row:1!important;
+  margin:0!important;font-size:24px!important;
+  line-height:1.2!important;letter-spacing:-.65px!important;
+  font-weight:750!important;
+}
+.form-desc{
+  grid-column:1!important;grid-row:2!important;
+  align-self:center!important;margin:0!important;
+  color:#C1D2DB!important;font-size:13px!important;
+}
+.today-chip{
+  grid-column:2!important;grid-row:2!important;
+  align-self:center!important;justify-self:end!important;
+  min-height:31px!important;padding:5px 9px!important;
+  border:1px solid rgba(103,232,249,.18)!important;
+  background:rgba(6,23,31,.28)!important;
+  color:#D6F8FA!important;font-size:11px!important;
+}
+.form-card{
+  display:flex!important;flex-direction:column!important;gap:12px!important;
+  margin:0 16px 18px!important;padding:12px!important;
+  border:1px solid rgba(255,255,255,.065)!important;
+  border-radius:22px!important;
+  background:linear-gradient(160deg,rgba(20,31,43,.96),rgba(15,27,38,.98))!important;
+  box-shadow:0 16px 36px rgba(0,0,0,.2)!important;
+}
+.panel{
+  display:flex!important;flex-direction:column!important;gap:15px!important;
+  margin:0!important;padding:15px!important;
+  border:1px solid rgba(255,255,255,.035)!important;
+  border-radius:16px!important;
+  background:linear-gradient(145deg,rgba(29,47,61,.58),rgba(24,39,53,.48))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025)!important;
+}
+.panel:nth-of-type(2){
+  background:linear-gradient(145deg,rgba(24,55,66,.52),rgba(22,43,57,.48))!important;
+}
+.panel:nth-of-type(3){
+  background:linear-gradient(145deg,rgba(30,48,62,.52),rgba(25,39,53,.48))!important;
+}
+.panel:not(:last-child){padding-bottom:15px!important;border-bottom:0!important}
+.panel+.panel{padding-top:15px!important}
+.panel-title{
+  display:flex!important;align-items:center!important;gap:11px!important;
+  margin:0!important;padding:0 0 2px!important;
+  border-bottom:0!important;
+}
+.step{
+  width:36px!important;height:36px!important;flex:0 0 36px!important;
+  border-radius:12px!important;
+  background:linear-gradient(145deg,rgba(34,211,238,.2),rgba(20,184,166,.14))!important;
+  border:1px solid rgba(103,232,249,.2)!important;
+}
+.field label,legend{color:#C1CFDA!important}
+input,select,textarea{
+  background:rgba(10,21,31,.62)!important;
+  border-color:rgba(255,255,255,.09)!important;
+}
+input:focus,select:focus,textarea:focus{
+  background:#172B39!important;
+}
+@media(max-width:380px){
+  .appbar{margin:12px 12px 0!important;padding:12px 14px 11px!important}
+  main{padding:0 12px 16px!important}
+  .form-hero{margin:0 12px 14px!important;padding:15px 15px 16px!important;min-height:110px!important}
+  .form-card{margin:0 12px 16px!important;padding:9px!important;gap:9px!important}
+  .panel{padding:13px!important;gap:13px!important}
+  .panel+.panel{padding-top:13px!important}
+  .form-title{font-size:22px!important}
+  .form-desc{font-size:12px!important}
+  .today-chip{font-size:10px!important;padding:5px 7px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+}
+
 </style>
 
 <link rel="manifest" href="./manifest.webmanifest">
