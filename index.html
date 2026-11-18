@@ -709,25 +709,30 @@ $("plantaoForm").addEventListener("submit",e=>{
  const data=$("data").value.split("-").reverse().join("/");
  const falha=checked("falha"),desc=$("descricaoFalha").value.trim(),obs=$("observacoes").value.trim();
  const msg=[
- "*CHECKLIST RAIO-X | TROCA DE PLANTÃO*",
- "--------------------------------",
- `*Data:* ${data}`,
- `*Horário:* ${$("horario").value}`,
+ "*CHECKLIST RAIO-X*",
+ "*TROCA DE PLANTÃO*",
+ "━━━━━━━━━━━━━━━━━━━━",
+ "*01 | IDENTIFICAÇÃO DO PLANTÃO*",
+ `*DATA*  ${data}`,
+ `*HORÁRIO*  ${$("horario").value}`,
  "",
- "*RESPONSÁVEIS*",
- `*Entrega:* ${$("entrega").value}`,
- `*Recebimento:* ${$("recebe").value}`,
+ "*02 | RESPONSÁVEIS*",
+ `*TÉCNICO QUE ENTREGA*\n${$("entrega").value}`,
+ `*TÉCNICO QUE RECEBE*\n${$("recebe").value}`,
  "",
- "*CONDIÇÃO DO EQUIPAMENTO*",
- `*Lacre:* ${checked("lacre")}`,
- `*Funcionamento:* ${checked("funcionamento")}`,
- `*Houve falha durante o plantão?* ${falha}`,
- ...(falha==="Sim"?[`*Descrição da falha:* ${desc}`]:[]),
- `*Observações:* ${obs||"Sem observações."}`,
+ "*03 | CONDIÇÃO DO EQUIPAMENTO*",
+ `*LACRE*  ${checked("lacre")}`,
+ `*FUNCIONAMENTO*  ${checked("funcionamento")}`,
+ `*FALHA DURANTE O PLANTÃO*  ${falha.toUpperCase()}`,
+ ...(falha==="Sim"?[`*DESCRIÇÃO DA FALHA*\n${desc}`]:[]),
+ `*OBSERVAÇÕES*\n${obs||"Sem observações."}`,
  "",
- "*CONFIRMAÇÃO DOS PROFISSIONAIS*",
- `*Entrega confirmada por:* ${$("entrega").value}`,
- `*Recebimento confirmado por:* ${$("recebe").value}`
+ "━━━━━━━━━━━━━━━━━━━━",
+ "*04 | CONFIRMAÇÃO DOS PROFISSIONAIS*",
+ `*ENTREGA CONFIRMADA POR*\n${$("entrega").value}`,
+ `*RECEBIMENTO CONFIRMADO POR*\n${$("recebe").value}`,
+ "━━━━━━━━━━━━━━━━━━━━",
+ "_Registro de conferência do equipamento de Raio-X._"
  ].join("\n");
  window.location.href="https://wa.me/?text="+encodeURIComponent(msg);
 });
