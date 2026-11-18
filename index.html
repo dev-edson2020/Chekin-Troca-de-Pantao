@@ -475,6 +475,22 @@ textarea{min-height:112px!important;padding:14px 15px!important;resize:none!impo
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
 .review-toolbar{display:flex;gap:8px;justify-content:flex-end;margin:0 0 8px}.review-toolbar .review-edit{min-height:40px;white-space:nowrap}
+
+/* Correção de ocupação mobile, rolagem e barra de ação */
+html,body{width:100%;max-width:100%;margin:0;overflow:hidden}
+.app{width:100%;max-width:480px;margin:0 auto}
+.wizard-step{scrollbar-width:none;-ms-overflow-style:none}
+.wizard-step::-webkit-scrollbar{width:0;height:0;display:none}
+.back-btn[hidden]{display:none!important}
+.wizard-actions{width:100%;box-sizing:border-box}
+.next-btn,.primary-btn{min-width:0}
+.next-btn:disabled,.primary-btn:disabled{opacity:.58!important;filter:saturate(.72)!important}
+@media(max-width:640px){
+  .app{width:100%!important;max-width:none!important;margin:0!important}
+  .appbar,.progress-wrap{width:100%!important}
+  .wizard-actions{width:100%!important}
+}
+
 </style>
 
 <link rel="manifest" href="./manifest.webmanifest">
@@ -714,7 +730,7 @@ $("limpar").addEventListener("click",()=>{
   const labels=['Responsáveis','Equipamento','Revisão'];
   progressLabel.textContent='Etapa '+(current+1)+' de 3 · '+labels[current];
   [1,2,3].forEach(n=>$('progress'+n).classList.toggle('is-complete',n<=current));
-  back.style.visibility=current===0?'hidden':'visible';
+  back.hidden=current===0;
   next.hidden=current===2;submit.style.display=current===2?'flex':'none';
   next.disabled=!validators[current]();
   submit.disabled=!step3Valid();
