@@ -392,7 +392,7 @@ body{overscroll-behavior:none}
 .menu-trigger:active{background:rgba(255,255,255,.08)}
 .menu-pop{position:absolute;right:0;top:48px;z-index:50;min-width:210px;padding:7px;border:1px solid var(--line);border-radius:14px;background:#172330;box-shadow:0 16px 40px #0008}
 .menu-pop[hidden]{display:none}
-.menu-pop button{width:100%;min-height:48px;text-align:left;padding:0 13px;border:0;border-radius:10px;background:transparent;color:#FCA5A5;font:600 14px inherit}
+.menu-pop button{width:100%;min-height:48px;text-align:left;padding:0 13px;border:0;border-radius:10px;background:transparent;color:#FCA5A5;font:600 14px system-ui,sans-serif}
 .progress-wrap{height:54px;min-height:54px;flex:0 0 54px;padding:7px 20px 10px;margin:0!important;display:flex;flex-direction:column;gap:7px;background:transparent!important;border:0!important}
 .progress-label{font-size:13px!important;font-weight:600;color:#D5E1E9!important}
 .progress-track{height:4px;display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
@@ -418,7 +418,7 @@ main{flex:1;min-height:0;overflow:hidden;padding:0!important}
 .field label,fieldset legend{font-size:13px!important;line-height:18px;font-weight:600!important;color:#C2CED9!important}
 input:not([type=radio]):not([type=checkbox]),select,textarea{
  width:100%;min-height:56px;padding:0 15px;border:1px solid var(--line)!important;border-radius:14px!important;
- background:var(--field)!important;color:var(--text)!important;font:500 16px/1.4 inherit!important;outline:none;
+ background:var(--field)!important;color:var(--text)!important;font:500 16px/1.4 system-ui,sans-serif!important;outline:none;
  transition:border-color .16s ease,box-shadow .16s ease,background .16s ease;
 }
 select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-position:right 14px center!important;padding-right:42px!important}
@@ -474,6 +474,7 @@ textarea{min-height:112px!important;padding:14px 15px!important;resize:none!impo
 @media(max-width:360px){.appbar{padding-inline:16px!important}.wizard-step{padding-inline:16px}.wizard-actions{padding-inline:16px}.back-btn{flex-basis:94px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
+.review-toolbar{display:flex;gap:8px;justify-content:flex-end;margin:0 0 8px}.review-toolbar .review-edit{min-height:40px;white-space:nowrap}
 </style>
 
 <link rel="manifest" href="./manifest.webmanifest">
@@ -687,8 +688,9 @@ $("limpar").addEventListener("click",()=>{
  });
  formCard.replaceWith(content);
  const review=document.createElement('div');review.className='review-summary';
- review.innerHTML='<h3 class="review-title">Confira as informações</h3><dl class="review-list" id="reviewList"></dl>';
+ review.innerHTML='<h3 class="review-title">Confira as informações</h3><div class="review-toolbar"><button type="button" class="review-edit" data-edit="0">Editar responsáveis</button><button type="button" class="review-edit" data-edit="1">Editar equipamento</button></div><dl class="review-list" id="reviewList"></dl>';
  const confirmPanel=panels[2];confirmPanel.insertBefore(review,confirmPanel.querySelector('.checks'));
+ review.querySelectorAll('[data-edit]').forEach(btn=>btn.addEventListener('click',()=>goTo(Number(btn.dataset.edit))));
  const checks=confirmPanel.querySelector('.checks');
  const checkLabels=[...checks.querySelectorAll('.checkline')];
  checkLabels.forEach(label=>{label.setAttribute('role','switch');label.setAttribute('aria-label',label.textContent.trim())});
@@ -730,10 +732,7 @@ $("limpar").addEventListener("click",()=>{
    ['Houve falha?',selected('falha')||'—'],['Descrição da falha',$('descricaoFalha').value.trim()||'—'],
    ['Observações',$('observacoes').value.trim()||'Sem observações']
   ];
-  $('reviewList').innerHTML=rows.map((r,i)=>'<div class="review-row"><dt>'+r[0]+'</dt><dd>'+escapeHtml(r[1])+'</dd></div>').join('');
-  $('reviewList').insertAdjacentHTML('beforebegin','<div style="display:flex;justify-content:flex-end;margin-bottom:8px"><button type="button" class="review-edit" data-edit="0">Editar responsáveis</button></div>');
-  $('reviewList').insertAdjacentHTML('afterend','<div style="display:flex;justify-content:flex-end;margin-top:8px"><button type="button" class="review-edit" data-edit="1">Editar equipamento</button></div>');
-  confirmPanel.querySelectorAll('[data-edit]').forEach(btn=>btn.addEventListener('click',()=>goTo(Number(btn.dataset.edit))));
+  $('reviewList').innerHTML=rows.map(r=>'<div class="review-row"><dt>'+r[0]+'</dt><dd>'+escapeHtml(r[1])+'</dd></div>').join('');
  };
  const escapeHtml=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  function goTo(index){
