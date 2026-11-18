@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0b1020">
+<link rel="icon" type="image/png" href="icons/icon.png">
+<link rel="apple-touch-icon" href="icons/icon.png">
 <title>Raio-X | Troca de Plantão</title>
 <style>
 :root{
@@ -597,12 +599,25 @@ button,select,input[type="checkbox"],input[type="radio"]{-webkit-tap-highlight-c
 .clear-dialog-actions button:focus-visible{outline:2px solid #a5b4fc;outline-offset:3px}
 @media(max-width:360px){.clear-dialog{padding:19px;border-radius:19px}.clear-dialog-actions{gap:8px}}
 
+
+.install-strip{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 14px 4px;padding:11px 13px;border:1px solid rgba(89,126,245,.3);border-radius:14px;background:linear-gradient(105deg,rgba(34,91,180,.22),rgba(91,66,174,.2))}
+.install-strip[hidden],.install-modal[hidden]{display:none!important}
+.install-copy{font-size:12px;line-height:1.35;color:#cbd7f5}
+.install-copy strong{display:block;color:#fff;font-size:13px;margin-bottom:2px}
+.install-button{flex:0 0 auto;min-height:38px;padding:0 14px;border:0;border-radius:10px;background:linear-gradient(110deg,#3678e8,#7354dc);color:white;font-size:13px;font-weight:800;cursor:pointer}
+.install-modal{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(3,7,18,.78);backdrop-filter:blur(7px)}
+.install-dialog{width:100%;max-width:360px;padding:22px;border:1px solid rgba(129,140,248,.34);border-radius:22px;background:linear-gradient(155deg,#111b35,#111827 60%,#171638);color:#f8fafc;box-shadow:0 24px 70px rgba(0,0,0,.5)}
+.install-dialog h2{margin:0 0 8px;font-size:19px}
+.install-dialog p,.install-dialog li{color:#c4cee4;font-size:14px;line-height:1.55}
+.install-dialog ol{padding-left:21px;margin:12px 0}
+.install-dialog button{width:100%;min-height:44px;margin-top:10px;border:0;border-radius:11px;background:linear-gradient(110deg,#3678e8,#7354dc);color:#fff;font-weight:800}
+
 </style>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Troca de Plantão">
-<link rel="apple-touch-icon" href="icons/icon-192.png">
+
 </head>
 <body>
 <div class="app">
@@ -617,6 +632,19 @@ button,select,input[type="checkbox"],input[type="radio"]{-webkit-tap-highlight-c
     </div>
   </div>
 
+
+  <div class="install-strip" id="installStrip">
+    <div class="install-copy"><strong>Instale no celular</strong>Acesse a troca de plantão direto pela tela inicial.</div>
+    <button class="install-button" type="button" id="installAppButton">Instalar</button>
+  </div>
+  <div class="install-modal" id="installModal" hidden>
+    <div class="install-dialog" role="dialog" aria-modal="true" aria-labelledby="installTitle">
+      <h2 id="installTitle">Instalar Troca de Plantão</h2>
+      <p id="installInstructions">Adicione o aplicativo à tela inicial para abrir rapidamente nos próximos plantões.</p>
+      <ol id="installSteps"><li>Toque no menu do navegador (três pontinhos).</li><li>Escolha Instalar aplicativo ou Adicionar à tela inicial.</li><li>Confirme a instalação.</li></ol>
+      <button type="button" id="closeInstallModal">Entendi</button>
+    </div>
+  </div>
   <main>
 
     <section id="form">
@@ -749,6 +777,29 @@ $("confirmClear").addEventListener("click",()=>{
 });
 clearModal.addEventListener("click",e=>{if(e.target===clearModal)closeClearModal()});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!clearModal.hidden)closeClearModal()});
+
+let deferredInstallPrompt=null;
+const installStrip=$("installStrip"),installModal=$("installModal"),installButton=$("installAppButton");
+window.addEventListener("beforeinstallprompt",event=>{event.preventDefault();deferredInstallPrompt=event;});
+installButton.addEventListener("click",async()=>{
+ if(deferredInstallPrompt){
+  deferredInstallPrompt.prompt();
+  await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt=null;
+  installStrip.hidden=true;
+ }else{
+  const ua=navigator.userAgent;
+  $("installInstructions").textContent=/iphone|ipad|ipod/i.test(ua)
+   ?"No iPhone, abra este link no Safari, toque em Compartilhar e escolha Adicionar à Tela de Início."
+   :"No Chrome, abra o menu (três pontinhos) e escolha Instalar aplicativo ou Adicionar à tela inicial.";
+  installModal.hidden=false;
+ }
+});
+$("closeInstallModal").addEventListener("click",()=>installModal.hidden=true);
+installModal.addEventListener("click",e=>{if(e.target===installModal)installModal.hidden=true});
+window.addEventListener("appinstalled",()=>{installStrip.hidden=true;deferredInstallPrompt=null;});
+if(window.matchMedia("(display-mode: standalone)").matches||navigator.standalone===true)installStrip.hidden=true;
+
 </script>
 <script>if ('serviceWorker' in navigator) { window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(console.error)); }</script>
 </body>
