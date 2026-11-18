@@ -370,6 +370,110 @@ input:focus,select:focus,textarea:focus{
   *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
 }
 
+
+:root{
+ --bg:#0B1118;--surface:#121A24;--field:#1A2431;--line:rgba(255,255,255,.08);
+ --cyan:#22D3EE;--teal:#14B8A6;--text:#F1F5F9;--muted:#A5B2C2;
+ --placeholder:#8292A5;--green:#22C55E;--red:#EF4444;--amber:#F59E0B;
+ --radius:14px;--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;--space-6:24px;
+}
+*{box-sizing:border-box}
+html,body{width:100%;height:100%;min-height:100%;margin:0;overflow:hidden;background:var(--bg)!important;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+body{overscroll-behavior:none}
+.app{width:100%;max-width:480px;height:100dvh;min-height:0;margin:0 auto;display:flex;flex-direction:column;overflow:hidden;background:radial-gradient(ellipse at 50% -20%,rgba(20,184,166,.09),transparent 45%),var(--bg)!important}
+.appbar{height:56px;min-height:56px;flex:0 0 56px;margin:0!important;padding:0 20px!important;display:flex;align-items:center;gap:11px;background:rgba(11,17,24,.96)!important;border:0!important;border-radius:0!important;box-shadow:none!important;position:relative;z-index:20}
+.brand-icon.radiology-logo{width:34px!important;height:34px!important;flex:0 0 34px!important;padding:1px!important;border-radius:10px!important;box-shadow:none!important}
+.brand-icon.radiology-logo img{width:100%;height:100%;object-fit:contain;border-radius:8px!important}
+.appbar>div:nth-child(2){min-width:0;display:flex;flex-direction:column;gap:1px}
+.brand-name{font-size:15px!important;line-height:18px!important;font-weight:700!important;color:var(--text)!important}
+.brand-sub{font-size:12px!important;line-height:15px!important;letter-spacing:0!important;color:var(--muted)!important}
+.menu-wrap{position:relative;margin-left:auto}
+.menu-trigger{width:44px;height:44px;border:0;border-radius:14px;background:transparent;color:#D7E2EA;font-size:25px;line-height:1;cursor:pointer}
+.menu-trigger:active{background:rgba(255,255,255,.08)}
+.menu-pop{position:absolute;right:0;top:48px;z-index:50;min-width:210px;padding:7px;border:1px solid var(--line);border-radius:14px;background:#172330;box-shadow:0 16px 40px #0008}
+.menu-pop[hidden]{display:none}
+.menu-pop button{width:100%;min-height:48px;text-align:left;padding:0 13px;border:0;border-radius:10px;background:transparent;color:#FCA5A5;font:600 14px inherit}
+.progress-wrap{height:54px;min-height:54px;flex:0 0 54px;padding:7px 20px 10px;margin:0!important;display:flex;flex-direction:column;gap:7px;background:transparent!important;border:0!important}
+.progress-label{font-size:13px!important;font-weight:600;color:#D5E1E9!important}
+.progress-track{height:4px;display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+.progress-segment{height:4px;border-radius:99px;background:#293746!important;transition:background .2s ease,opacity .2s ease}
+.progress-segment.is-complete{background:linear-gradient(90deg,var(--cyan),var(--teal))!important}
+main{flex:1;min-height:0;overflow:hidden;padding:0!important}
+#form{height:100%;min-height:0;display:flex;flex-direction:column}
+.form-hero,.footnote{display:none!important}
+#plantaoForm{display:flex;flex:1;min-height:0;flex-direction:column;overflow:hidden}
+.form-card{display:contents!important}
+.wizard-content{position:relative;flex:1;min-height:0;overflow:hidden}
+.wizard-step{position:absolute;inset:0;overflow-y:auto;overscroll-behavior:contain;padding:12px 20px 24px;opacity:0;visibility:hidden;transform:translateX(22px);pointer-events:none;transition:transform .2s ease,opacity .2s ease,visibility .2s}
+.wizard-step.active{position:absolute;opacity:1;visibility:visible;transform:translateX(0);pointer-events:auto}
+.wizard-step.leaving-left{transform:translateX(-22px);opacity:0}
+.wizard-heading{margin:2px 0 24px}
+.wizard-eyebrow{display:block;margin-bottom:8px;color:var(--cyan);font-size:13px;font-weight:650;letter-spacing:.2px}
+.wizard-heading h1{margin:0;color:var(--text);font-size:24px;line-height:1.2;font-weight:750;letter-spacing:-.55px}
+.wizard-heading p{margin:7px 0 0;color:var(--muted);font-size:15px;line-height:1.45}
+.panel{display:flex!important;flex-direction:column;gap:20px;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+.panel-title{display:none!important}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:8px;margin:0!important}
+.field label,fieldset legend{font-size:13px!important;line-height:18px;font-weight:600!important;color:#C2CED9!important}
+input:not([type=radio]):not([type=checkbox]),select,textarea{
+ width:100%;min-height:56px;padding:0 15px;border:1px solid var(--line)!important;border-radius:14px!important;
+ background:var(--field)!important;color:var(--text)!important;font:500 16px/1.4 inherit!important;outline:none;
+ transition:border-color .16s ease,box-shadow .16s ease,background .16s ease;
+}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-position:right 14px center!important;padding-right:42px!important}
+input:focus,select:focus,textarea:focus{border-color:var(--cyan)!important;box-shadow:0 0 0 3px rgba(34,211,238,.14)!important;background:#1C2B39!important}
+input::placeholder,textarea::placeholder{color:var(--placeholder)!important}
+fieldset{border:0!important;padding:0!important;margin:0!important;min-width:0}
+fieldset legend{margin-bottom:10px}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.choice{min-height:68px;display:flex;align-items:center;justify-content:center;gap:9px;padding:10px;border:1px solid var(--line)!important;border-radius:14px!important;background:#121D28!important;color:#B7C4D0!important;font-size:15px!important;font-weight:650;cursor:pointer;transition:.16s ease}
+.choice input{position:absolute;opacity:0;width:1px;height:1px}
+.choice span{display:flex;align-items:center;justify-content:center;gap:8px}
+.choice:has(input:checked){border:2px solid var(--green)!important;background:rgba(34,197,94,.11)!important;color:#B8F7CE!important}
+.choice.danger:has(input:checked){border:2px solid var(--red)!important;background:rgba(239,68,68,.11)!important;color:#FECACA!important}
+fieldset:nth-of-type(3) .choice:has(input[value="Sim"]:checked){border:2px solid var(--amber)!important;background:rgba(245,158,11,.12)!important;color:#FDE68A!important}
+textarea{min-height:112px!important;padding:14px 15px!important;resize:none!important}
+.char-count{font-size:12px!important;color:var(--muted)!important;text-align:right}
+#descricaoFalhaBox.attention label{color:#FCD34D!important}
+.attention-note{font-size:13px;color:#FCD34D;margin-top:-10px}
+.checks{display:flex;flex-direction:column;gap:12px}
+.checkline{min-height:68px;display:flex;align-items:center;gap:14px;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:#151F2B;color:#E4ECF2;font-size:15px;line-height:1.4;cursor:pointer}
+.checkline input{appearance:none;width:48px;height:28px;min-width:48px;border:0;border-radius:99px;background:#354454;position:relative;transition:background .18s ease}
+.checkline input:before{content:"";position:absolute;width:22px;height:22px;left:3px;top:3px;border-radius:50%;background:#E7EDF2;transition:transform .18s ease}
+.checkline input:checked{background:linear-gradient(90deg,var(--cyan),var(--teal))}
+.checkline input:checked:before{transform:translateX(20px);background:white}
+.review-list{display:flex;flex-direction:column;gap:0;margin:0 0 22px;border-radius:14px;overflow:hidden;background:rgba(26,36,49,.68)}
+.review-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:13px 14px;border-bottom:1px solid rgba(255,255,255,.045)}
+.review-row:last-child{border-bottom:0}
+.review-row dt{font-size:13px;color:var(--muted);flex:0 0 38%}
+.review-row dd{margin:0;text-align:right;font-size:14px;line-height:1.4;color:var(--text);overflow-wrap:anywhere}
+.review-edit{min-height:40px;padding:0 12px;border:1px solid rgba(34,211,238,.24);border-radius:10px;background:rgba(34,211,238,.08);color:#8DECF5;font-size:13px;font-weight:650}
+.review-title{margin:0 0 10px;font-size:14px;color:#E5EDF3;font-weight:700}
+.wizard-actions{flex:0 0 auto;display:flex;gap:10px;padding:12px 20px calc(12px + env(safe-area-inset-bottom));background:rgba(13,21,30,.97);border-top:1px solid rgba(255,255,255,.055);backdrop-filter:blur(16px);z-index:10}
+.wizard-actions button{height:56px;min-height:56px;border-radius:15px;font-size:16px;font-weight:700;cursor:pointer;transition:transform .12s ease,opacity .15s ease,filter .15s ease}
+.wizard-actions button:active{transform:scale(.98)}
+.back-btn{flex:0 0 112px;border:1px solid var(--line);background:#182330;color:#CBD5E1}
+.next-btn,.primary-btn{flex:1;border:0!important;background:linear-gradient(110deg,var(--cyan),var(--teal))!important;color:#06232A!important;box-shadow:0 8px 22px rgba(20,184,166,.17)}
+.next-btn:disabled,.primary-btn:disabled{opacity:.35!important;filter:saturate(.5);box-shadow:none}
+.primary-btn{display:none;align-items:center;justify-content:center;gap:10px;margin:0!important}
+.primary-btn svg{width:21px;height:21px}
+.secondary-btn{display:none!important}
+.wizard-error{min-height:18px;margin:10px 0 0;color:#FCA5A5;font-size:13px}
+.success-screen{display:none;flex:1;min-height:0;overflow:auto;padding:36px 24px 28px;text-align:center;align-items:center;justify-content:center;flex-direction:column}
+.success-screen.show{display:flex}
+.success-mark{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;margin-bottom:24px;color:#062B2B;background:linear-gradient(145deg,var(--cyan),var(--teal));box-shadow:0 0 0 12px rgba(34,211,238,.08);animation:success-pop .35s ease-out}
+.success-mark svg{width:42px;height:42px}
+.success-screen h2{font-size:26px;margin:0 0 9px}
+.success-screen p{font-size:15px;color:var(--muted);margin:0 0 28px;line-height:1.5}
+.success-screen button,.success-screen a{width:100%;min-height:56px;display:flex;align-items:center;justify-content:center;margin-top:10px;border-radius:14px;font-size:16px;font-weight:700;text-decoration:none}
+.success-open{background:linear-gradient(110deg,var(--cyan),var(--teal));color:#06232A}
+.success-new{border:1px solid var(--line);background:#172330;color:#E2E8F0}
+@keyframes success-pop{from{transform:scale(.65);opacity:0}to{transform:scale(1);opacity:1}}
+[hidden]{display:none!important}
+@media(max-width:360px){.appbar{padding-inline:16px!important}.wizard-step{padding-inline:16px}.wizard-actions{padding-inline:16px}.back-btn{flex-basis:94px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
 </style>
 
 <link rel="manifest" href="./manifest.webmanifest">
@@ -495,7 +599,8 @@ $("plantaoForm").addEventListener("submit",e=>{
  `☑️ Entrega confirmada por: ${$("entrega").value}`,
  `☑️ Recebimento confirmado por: ${$("recebe").value}`
  ].join("\n");
- window.location.href="https://wa.me/?text="+encodeURIComponent(msg);
+ const whatsappUrl="https://wa.me/?text="+encodeURIComponent(msg);
+ window.dispatchEvent(new CustomEvent("troca-whatsapp-ready",{detail:{url:whatsappUrl}}));
 });
 $("limpar").addEventListener("click",()=>{
  if(confirm("Deseja limpar todos os campos?")){$("plantaoForm").reset();$("descricaoFalhaBox").classList.add("hidden");$("descricaoFalha").required=false;setDateTime()}
@@ -544,11 +649,118 @@ $("limpar").addEventListener("click",()=>{
 </script>
 
 
+
+<script>
+(() => {
+ const app=document.querySelector('.app');
+ const bar=app.querySelector('.appbar');
+ const logo=bar.querySelector('.brand-icon');
+ const brand=bar.querySelector('.appbar > div:nth-child(2)');
+ brand.innerHTML='<div class="brand-name">Troca de plantão</div><div class="brand-sub">Radiologia · Santa Casa de Angatuba</div>';
+ const menu=document.createElement('div');menu.className='menu-wrap';
+ menu.innerHTML='<button class="menu-trigger" type="button" aria-label="Abrir menu" aria-expanded="false">⋯</button><div class="menu-pop" hidden><button type="button" id="menuClear">Limpar formulário</button></div>';
+ bar.appendChild(menu);
+ const menuTrigger=menu.querySelector('.menu-trigger'),menuPop=menu.querySelector('.menu-pop');
+ menuTrigger.addEventListener('click',()=>{menuPop.hidden=!menuPop.hidden;menuTrigger.setAttribute('aria-expanded',String(!menuPop.hidden))});
+ document.addEventListener('click',e=>{if(!menu.contains(e.target)){menuPop.hidden=true;menuTrigger.setAttribute('aria-expanded','false')}});
+ const clear=$('limpar');menu.querySelector('#menuClear').addEventListener('click',()=>{menuPop.hidden=true;clear.click()});
+ const form=$('plantaoForm'),formRoot=$('form'),main=formRoot.parentElement;
+ const hero=form.querySelector('.form-hero');hero?.remove();
+ const progress=formRoot.querySelector('.progress-wrap');
+ const progressLabel=progress.querySelector('.progress-label');
+ progressLabel.textContent='Etapa 1 de 3 · Responsáveis';
+ bar.after(progress);
+ const formCard=form.querySelector('.form-card');
+ const panels=[...formCard.querySelectorAll('.panel')];
+ const content=document.createElement('div');content.className='wizard-content';content.setAttribute('aria-live','polite');
+ const descriptors=[
+  ['01 · RESPONSÁVEIS','Responsáveis','Identifique quem entrega e quem recebe o plantão.'],
+  ['02 · EQUIPAMENTO','Equipamento','Confira o lacre, o funcionamento e registre ocorrências.'],
+  ['03 · REVISÃO','Revisão e confirmação','Revise os dados e confirme a passagem de plantão.']
+ ];
+ const steps=panels.map((panel,i)=>{
+  const step=document.createElement('section');step.className='wizard-step'+(i===0?' active':'');step.id='wizardStep'+(i+1);step.setAttribute('aria-label','Etapa '+(i+1));
+  const head=document.createElement('header');head.className='wizard-heading';
+  head.innerHTML='<span class="wizard-eyebrow">'+descriptors[i][0]+'</span><h1>'+descriptors[i][1]+'</h1><p>'+descriptors[i][2]+'</p>';
+  panel.querySelector('.panel-title')?.remove();
+  step.append(head,panel);content.append(step);return step;
+ });
+ formCard.replaceWith(content);
+ const review=document.createElement('div');review.className='review-summary';
+ review.innerHTML='<h3 class="review-title">Confira as informações</h3><dl class="review-list" id="reviewList"></dl>';
+ const confirmPanel=panels[2];confirmPanel.insertBefore(review,confirmPanel.querySelector('.checks'));
+ const checks=confirmPanel.querySelector('.checks');
+ const checkLabels=[...checks.querySelectorAll('.checkline')];
+ checkLabels.forEach(label=>{label.setAttribute('role','switch');label.setAttribute('aria-label',label.textContent.trim())});
+ const actions=form.querySelector('.form-actions');
+ const submit=actions.querySelector('.primary-btn');
+ actions.className='wizard-actions';
+ const back=document.createElement('button');back.type='button';back.className='back-btn';back.textContent='Voltar';
+ const next=document.createElement('button');next.type='button';next.className='next-btn';next.textContent='Continuar';
+ const error=document.createElement('p');error.className='wizard-error';error.setAttribute('aria-live','assertive');error.id='wizardError';
+ actions.replaceChildren(back,next,submit);form.append(actions);
+ const success=document.createElement('section');success.className='success-screen';success.id='successScreen';
+ success.innerHTML='<div class="success-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6"/></svg></div><h2>Troca registrada</h2><p>As informações foram preparadas. Abra o WhatsApp para revisar e enviar a mensagem ao grupo.</p><a class="success-open" id="openWhatsApp" href="#" target="_blank" rel="noopener">Abrir WhatsApp</a><button class="success-new" id="newShift" type="button">Nova troca de plantão</button>';
+ formRoot.append(success);
+ const step1Valid=()=>['data','horario','entrega','recebe'].every(id=>$(id).value.trim())&&$('entrega').value!==$('recebe').value;
+ const selected=name=>form.querySelector('input[name="'+name+'"]:checked')?.value||'';
+ const step2Valid=()=>Boolean(selected('lacre')&&selected('funcionamento')&&selected('falha')&&(selected('falha')!=='Sim'||$('descricaoFalha').value.trim()));
+ const step3Valid=()=>$('confEntrega').checked&&$('confRecebe').checked;
+ const validators=[step1Valid,step2Valid,step3Valid];
+ let current=0,whatsappUrl='';
+ const updateProgress=()=>{
+  const labels=['Responsáveis','Equipamento','Revisão'];
+  progressLabel.textContent='Etapa '+(current+1)+' de 3 · '+labels[current];
+  [1,2,3].forEach(n=>$('progress'+n).classList.toggle('is-complete',n<=current));
+  back.style.visibility=current===0?'hidden':'visible';
+  next.hidden=current===2;submit.style.display=current===2?'flex':'none';
+  next.disabled=!validators[current]();
+  submit.disabled=!step3Valid();
+  error.textContent='';
+ };
+ const showError=message=>{error.textContent=message;const active=steps[current];let target=active.querySelector(':invalid')||active.querySelector('select:invalid,input:invalid,textarea:invalid');target?.scrollIntoView({behavior:'smooth',block:'center'});target?.focus({preventScroll:true})};
+ steps.forEach(step=>step.append(error.cloneNode(true)));
+ const errors=steps.map(s=>s.querySelector('.wizard-error'));
+ const setError=msg=>{errors[current].textContent=msg;if(msg){const active=steps[current];const first=current===0?['data','horario','entrega','recebe'].map($).find(el=>!el.value):current===1?(!selected('lacre')?form.querySelector('[name=lacre]'):!selected('funcionamento')?form.querySelector('[name=funcionamento]'):!selected('falha')?form.querySelector('[name=falha]'): $('descricaoFalha')):(!$('confEntrega').checked?$('confEntrega'):$('confRecebe'));first?.scrollIntoView({behavior:'smooth',block:'center'});first?.focus?.({preventScroll:true})}};
+ const renderReview=()=>{
+  const rows=[
+   ['Data',$('data').value?$('data').value.split('-').reverse().join('/'):'—'],
+   ['Horário',$('horario').value||'—'],['Entrega',$('entrega').value||'—'],['Recebimento',$('recebe').value||'—'],
+   ['Lacre',selected('lacre')||'—'],['Funcionamento',selected('funcionamento')||'—'],
+   ['Houve falha?',selected('falha')||'—'],['Descrição da falha',$('descricaoFalha').value.trim()||'—'],
+   ['Observações',$('observacoes').value.trim()||'Sem observações']
+  ];
+  $('reviewList').innerHTML=rows.map((r,i)=>'<div class="review-row"><dt>'+r[0]+'</dt><dd>'+escapeHtml(r[1])+'</dd></div>').join('');
+  $('reviewList').insertAdjacentHTML('beforebegin','<div style="display:flex;justify-content:flex-end;margin-bottom:8px"><button type="button" class="review-edit" data-edit="0">Editar responsáveis</button></div>');
+  $('reviewList').insertAdjacentHTML('afterend','<div style="display:flex;justify-content:flex-end;margin-top:8px"><button type="button" class="review-edit" data-edit="1">Editar equipamento</button></div>');
+  confirmPanel.querySelectorAll('[data-edit]').forEach(btn=>btn.addEventListener('click',()=>goTo(Number(btn.dataset.edit))));
+ };
+ const escapeHtml=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ function goTo(index){
+  steps[current].classList.remove('active');steps[current].classList.add('leaving-left');
+  current=index;steps.forEach((s,i)=>{s.classList.toggle('active',i===current);s.classList.remove('leaving-left')});
+  if(current===2)renderReview();updateProgress();steps[current].scrollTop=0;
+ }
+ back.addEventListener('click',()=>{if(current>0)goTo(current-1)});
+ next.addEventListener('click',()=>{if(!validators[current]()){setError(current===0?'Preencha data, horário e os dois técnicos diferentes.':'Selecione todas as condições obrigatórias e descreva a falha, se houver.');return}if(current===1)renderReview();goTo(current+1)});
+ form.addEventListener('input',()=>{updateProgress();if(current===2)renderReview()});
+ form.addEventListener('change',()=>{updateProgress();if(current===2)renderReview()});
+ $('descricaoFalhaBox').insertAdjacentHTML('beforeend','<small class="attention-note" id="falhaRequiredNote" hidden>Descreva a ocorrência para continuar.</small>');
+ const syncAttention=()=>{
+  const adverse=selected('lacre')==='Violado'||selected('funcionamento')==='Com falha'||selected('falha')==='Sim';
+  $('observacoes').closest('.field').classList.toggle('attention',adverse);
+  $('falhaRequiredNote').hidden=selected('falha')!=='Sim';
+ };
+ form.addEventListener('change',syncAttention);syncAttention();
+ window.addEventListener('troca-whatsapp-ready',e=>{whatsappUrl=e.detail.url;form.style.display='none';progress.style.display='none';success.classList.add('show');actions.style.display='none';$('openWhatsApp').href=whatsappUrl;});
+ $('newShift').addEventListener('click',()=>{success.classList.remove('show');form.style.display='';progress.style.display='';actions.style.display='';form.reset();$('descricaoFalhaBox').classList.add('hidden');$('descricaoFalha').required=false;setDateTime();current=0;steps.forEach((s,i)=>s.classList.toggle('active',i===0));updateProgress();syncAttention();});
+ updateProgress();
+})();
+</script>
+
 <script>
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch((error) => console.error('Falha ao registrar o app:', error));
-  });
+ window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(error=>console.error('Falha ao registrar o app:',error)));
 }
 </script>
 </body>
