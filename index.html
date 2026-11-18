@@ -151,6 +151,77 @@ main{padding:0 16px 16px}
   .brand-icon.radiology-logo{width:43px;height:43px;flex-basis:43px}
   .brand-sub{font-size:10px}
 }
+
+/* Refinamento final do cabeçalho: compacto, equilibrado e sem selo redundante */
+.appbar{
+  margin:16px 16px 0;
+  padding:12px 18px;
+  min-height:68px;
+  gap:12px;
+  border-radius:20px 20px 0 0;
+}
+.brand-icon.radiology-logo{
+  width:42px;height:42px;flex-basis:42px;
+  padding:2px;border-radius:13px;
+}
+.brand-icon.radiology-logo img{border-radius:10px}
+.brand-name{font-size:14px;line-height:1.25;font-weight:700}
+.brand-sub{margin-top:3px;font-size:11px;line-height:1.25;letter-spacing:.25px}
+main{padding:0 16px 16px}
+.form-hero{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  grid-template-rows:auto auto;
+  align-items:end;
+  column-gap:12px;
+  row-gap:5px;
+  margin:0 0 18px;
+  padding:15px 18px 17px;
+  border-radius:0 0 20px 20px;
+  min-height:112px;
+}
+.form-hero:after{width:116px;height:116px;right:-58px;top:-64px}
+.hero-kicker{display:none!important}
+.form-title{
+  grid-column:1 / -1;
+  grid-row:1;
+  margin:0;
+  font-size:23px;
+  line-height:1.18;
+  letter-spacing:-.65px;
+}
+.form-desc{
+  grid-column:1;
+  grid-row:2;
+  align-self:center;
+  margin:0;
+  font-size:13px;
+  line-height:1.4;
+}
+.today-chip{
+  grid-column:2;
+  grid-row:2;
+  align-self:center;
+  justify-self:end;
+  min-height:30px;
+  padding:5px 9px;
+  gap:6px;
+  font-size:11px;
+  white-space:nowrap;
+}
+.today-chip svg{width:13px;height:13px}
+@media(max-width:380px){
+  .appbar{margin:12px 12px 0;padding:11px 14px}
+  main{padding:0 12px 16px}
+  .brand-icon.radiology-logo{width:40px;height:40px;flex-basis:40px}
+  .brand-name{font-size:13px}
+  .brand-sub{font-size:10px;letter-spacing:.15px}
+  .form-hero{padding:14px 15px 16px;column-gap:8px}
+  .form-title{font-size:21px}
+  .form-desc{font-size:12px}
+  .today-chip{font-size:10px;padding-inline:7px}
+}
+
 </style>
 
 <link rel="manifest" href="./manifest.webmanifest">
@@ -171,7 +242,6 @@ main{padding:0 16px 16px}
 
     <section id="form">
       <div class="form-hero">
-        <div class="hero-kicker">RADIOLOGIA · SANTA CASA</div>
         <h1 class="form-title">Troca de plantão</h1>
         <p class="form-desc">Registro de passagem de plantão</p>
         <div class="today-chip" aria-label="Data atual">
