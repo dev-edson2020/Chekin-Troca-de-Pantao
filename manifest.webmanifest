@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "Raio-X | Troca de Plantão",
+  "short_name": "Troca de Plantão",
+  "description": "Registro de passagem de plantão da Radiologia da Santa Casa de Angatuba.",
+  "lang": "pt-BR",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0B1118",
+  "theme_color": "#0B1118",
+  "icons": [
+    {
+      "src": "./icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
