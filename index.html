@@ -582,6 +582,21 @@ button,select,input[type="checkbox"],input[type="radio"]{-webkit-tap-highlight-c
   .appbar{width:calc(100% - 18px)!important;margin:10px 9px 8px!important}
 }
 
+
+/* CONFIRMACAO PERSONALIZADA PARA LIMPAR FORMULARIO */
+.clear-modal[hidden]{display:none!important}
+.clear-modal{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(3,7,18,.76);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+.clear-dialog{width:100%;max-width:360px;padding:22px;border:1px solid rgba(129,140,248,.32);border-radius:22px;background:linear-gradient(155deg,#111b35 0%,#111827 58%,#171638 100%);box-shadow:0 24px 70px rgba(0,0,0,.48);color:#f8fafc}
+.clear-dialog-icon{width:46px;height:46px;display:grid;place-items:center;margin-bottom:15px;border-radius:15px;background:linear-gradient(135deg,#344eaa,#7454d8);font-size:22px}
+.clear-dialog h2{margin:0 0 8px;font-size:19px;line-height:1.25;color:#fff}
+.clear-dialog p{margin:0;color:#bdc8df;font-size:14px;line-height:1.55}
+.clear-dialog-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+.clear-dialog-actions button{min-height:45px;border-radius:12px;font:700 14px system-ui,sans-serif;cursor:pointer}
+.clear-cancel{border:1px solid #394765;background:#202b42;color:#e6edff}
+.clear-confirm{border:1px solid transparent;background:linear-gradient(110deg,#426fe8,#7354dc);color:#fff;box-shadow:0 5px 16px rgba(74,91,210,.24)}
+.clear-dialog-actions button:focus-visible{outline:2px solid #a5b4fc;outline-offset:3px}
+@media(max-width:360px){.clear-dialog{padding:19px;border-radius:19px}.clear-dialog-actions{gap:8px}}
+
 </style>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -654,6 +669,19 @@ button,select,input[type="checkbox"],input[type="radio"]{-webkit-tap-highlight-c
     </section>
   </main>
 </div>
+
+<div class="clear-modal" id="clearModal" hidden>
+  <div class="clear-dialog" role="dialog" aria-modal="true" aria-labelledby="clearTitle" aria-describedby="clearDescription">
+    <div class="clear-dialog-icon" aria-hidden="true">↻</div>
+    <h2 id="clearTitle">Limpar formulário?</h2>
+    <p id="clearDescription">Todos os campos preenchidos serão apagados. A data e o horário serão atualizados automaticamente.</p>
+    <div class="clear-dialog-actions">
+      <button class="clear-cancel" type="button" id="cancelClear">Cancelar</button>
+      <button class="clear-confirm" type="button" id="confirmClear">Limpar tudo</button>
+    </div>
+  </div>
+</div>
+
 <script>
 const tecnicos=[
   "EDSON CARLOS DE MEIRA",
@@ -693,9 +721,19 @@ $("plantaoForm").addEventListener("submit",e=>{
  ].join("\n");
  window.location.href="https://wa.me/?text="+encodeURIComponent(msg);
 });
-$("limpar").addEventListener("click",()=>{
- if(confirm("Deseja limpar todos os campos?")){$("plantaoForm").reset();$("descricaoFalhaBox").classList.add("hidden");$("descricaoFalha").required=false;setDateTime()}
+const clearModal=$("clearModal");
+const closeClearModal=()=>{clearModal.hidden=true;$("limpar").focus()};
+$("limpar").addEventListener("click",()=>{clearModal.hidden=false;$("cancelClear").focus()});
+$("cancelClear").addEventListener("click",closeClearModal);
+$("confirmClear").addEventListener("click",()=>{
+ $("plantaoForm").reset();
+ $("descricaoFalhaBox").classList.add("hidden");
+ $("descricaoFalha").required=false;
+ setDateTime();
+ closeClearModal();
 });
+clearModal.addEventListener("click",e=>{if(e.target===clearModal)closeClearModal()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!clearModal.hidden)closeClearModal()});
 </script>
 <script>if ('serviceWorker' in navigator) { window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(console.error)); }</script>
 </body>
